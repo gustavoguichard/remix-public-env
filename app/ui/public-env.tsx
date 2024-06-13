@@ -1,13 +1,13 @@
-import type { getPublicKeys } from '~/environment.server'
-import { environment } from '~/environment.server'
-
-type Props = ReturnType<typeof getPublicKeys>['publicKeys']
+import type { UniversalEnv, publicEnvSchema } from '~/environment'
+import { getPublicEnv } from '~/environment'
 
 declare global {
   interface Window {
     ENV: Props
   }
 }
+
+type Props = typeof publicEnvSchema['infer']
 function PublicEnv(props: Props) {
   return (
     <script
@@ -18,14 +18,17 @@ function PublicEnv(props: Props) {
   )
 }
 
-function getPublicEnv<T extends keyof Props>(key: T): Props[T] {
+function getUniversalEnv<T extends keyof UniversalEnv>(
+  key: T,
+): UniversalEnv[T] {
   if (typeof window !== 'undefined' && !window.ENV) {
     throw new Error(
       `Missing the <PublicEnv /> component at the root of your app.`,
     )
   }
 
-  return typeof window === 'undefined' ? environment()[key] : window.ENV[key]
+  const source = typeof window === 'undefined' ? process.env : window.ENV
+  return getPublicEnv(source)[key]
 }
 
-export { PublicEnv, getPublicEnv }
+export { PublicEnv, getUniversalEnv }
