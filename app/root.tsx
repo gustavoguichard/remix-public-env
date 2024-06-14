@@ -1,41 +1,19 @@
-import type { MetaFunction } from '@remix-run/node'
-import { json } from '@remix-run/node'
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useLoaderData,
-} from '@remix-run/react'
-import { getPublicKeys } from './environment.server'
-import { PublicEnv } from './ui/public-env'
+import { Links, Meta, Scripts, ScrollRestoration } from '@remix-run/react'
+export { Outlet as default } from '@remix-run/react'
 
-export const meta: MetaFunction = () => ({
-  charset: 'utf-8',
-  title: 'New Remix App',
-  viewport: 'width=device-width,initial-scale=1',
-})
-
-export function loader() {
-  return json(getPublicKeys())
-}
-
-export default function App() {
-  const { publicKeys } = useLoaderData<typeof loader>()
+export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
       <body>
-        <PublicEnv {...publicKeys} />
-        <Outlet />
+        {children}
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   )
