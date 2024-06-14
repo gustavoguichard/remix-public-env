@@ -1,6 +1,9 @@
 import { publicEnvSchema } from '~/environment'
 
-const loadPublicEnv = (args: Record<string, unknown>) =>
-  publicEnvSchema.onUndeclaredKey('delete').assert({ ...args })
+/**
+ * Function to load public environment variables on the server.
+ */
+const loadPublicEnv = () =>
+  publicEnvSchema.onUndeclaredKey('delete').assert({ ...process.env })
 
 export { loadPublicEnv }

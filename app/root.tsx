@@ -10,13 +10,15 @@ import { PublicEnv } from './ui/public-env'
 import { loadPublicEnv } from '~/business/public-env.server'
 
 export function loader() {
-  return { publicKeys: loadPublicEnv(process.env) }
+  // Load the public environment variables from the server.
+  return { publicKeys: loadPublicEnv() }
 }
 
 export default function App() {
   const { publicKeys } = useLoaderData<typeof loader>()
   return (
     <>
+      {/* Render the PublicEnv component that will declare the public environment variables to the window.ENV object and declare them at the type level. */}
       <PublicEnv {...publicKeys} />
       <Outlet />
     </>

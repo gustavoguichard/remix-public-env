@@ -1,33 +1,3 @@
-# Getting started
+# Type-Safe Env Vars in Remix - A modern approach with ArkType
 
-```sh
-git clone https://github.com/gustavoguichard/remix-public-env.git
-cd remix-public-env/
-cp .env.example .env
-```
-
-## Development
-
-From your terminal:
-
-```sh
-npm run dev
-```
-
-This starts your app in development mode, rebuilding assets on file changes.
-
-## Deployment
-
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
+[Read the article](https://dev.to/seasonedcc/type-safe-env-vars-in-remix-a-modern-approach-with-arktype-11k9)
