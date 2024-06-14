@@ -5,8 +5,6 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 installGlobals()
 
-export default defineConfig(({ mode }) => {
-  return {
-    plugins: [remix(), tsconfigPaths()],
-  }
+export default defineConfig({
+  plugins: [remix(), tsconfigPaths()],
 })
