@@ -5,7 +5,7 @@ export default function Index() {
   function showStripeKey() {
     alert(
       `Stripe key on the client: ${
-        getPublicEnv(import.meta.env).viteStripePublicKey
+        getPublicEnv(import.meta.env).stripePublicKey
       }`,
     )
   }
@@ -14,7 +14,7 @@ export default function Index() {
     <div>
       <h1>
         GMAPS key on the server and client:{' '}
-        {getPublicEnv(import.meta.env).viteGoogleMapsApiKey}
+        {getPublicEnv(import.meta.env).googleMapsApiKey}
       </h1>
       <p>
         <button onClick={showStripeKey}>Alert Stripe key</button>
